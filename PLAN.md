@@ -406,7 +406,7 @@ Record client and model versions in `docs/benchmarks.md`. The design targets are
 - **CI:** formatting, Clippy, tests, the contract drift check, skill checks and release builds, with read-only repository permissions. Tests use synthetic tokens and local servers. The staging end-to-end job runs separately with its own secrets, never on pull requests from forks.
 - **Releases:** [`dist`](https://opensource.axo.dev/cargo-dist/) builds GitHub Releases for `x86_64-unknown-linux-musl`, `aarch64-unknown-linux-musl`, `x86_64-apple-darwin` and `aarch64-apple-darwin`, with checksums, a shell installer and build attestations. Static musl binaries avoid per-distribution library assumptions.
 - **Packages:** a Homebrew tap, an AUR package `taskhub-cli-bin` built from the release tarball and its checksum, and `cargo install --git` as a fallback. The release archive includes the man page and completions.
-- **Updates:** no self-update. `GET /me` returns `latestClientVersion`; on a terminal, the CLI mentions a newer version at most once a day. `minClientVersion` is enforced by the server.
+- **Updates:** no self-update. `GET /me` returns `latestClientVersion` (null when TaskHub has none configured, in which case the CLI shows no notice); on a terminal, the CLI mentions a newer version at most once a day. `minClientVersion` is enforced by the server.
 - Pin CI actions to commit hashes. No package name, repository, signing identity or publishing credential is assumed to exist yet.
 
 ## Sources
