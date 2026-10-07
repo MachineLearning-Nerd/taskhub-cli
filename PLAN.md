@@ -90,6 +90,11 @@ XDG variables are honored when set.
 
 - `--with-token` reads the token from stdin. Without the flag, on a terminal, it prompts with hidden input. There is no argument that takes a token, so it never appears in shell history or `ps`.
 - It checks the `thk_` prefix and checksum locally, calls `GET /me`, and saves the credentials with the username.
+- **Token format** (it must match TaskHub's `lib/auth/api-token-format.ts`):
+  - `thk_`, then 43 base64url characters, then a 6-character checksum of those 43 characters.
+  - The checksum is CRC-32/ISO-HDLC: reflected polynomial `0xedb88320`, initial value and final XOR `0xffffffff`.
+  - It is encoded in base62 with the alphabet `0-9A-Za-z`, left-padded with `0` to six characters.
+  - Test it against TaskHub's known vectors.
 - It prints the username, profile, granted projects and expiry ("never" for a token without one).
 - `--origin URL` is the only way to set the server, and the origin is saved with the token. The default is `https://taskhub.dineshjinjala.com`. HTTPS is required, except plain HTTP to the literal addresses `127.0.0.1` and `[::1]` for local development; the name `localhost` is not accepted, because it can be redirected.
 
