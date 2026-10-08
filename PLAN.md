@@ -8,7 +8,7 @@ Date: 2026-10-07. Status: revised after the second three-agent review (security,
 
 These are shared with the [TaskHub API and tokens plan](../TaskHub/docs/plans/2026-10-07-agent-api-and-tokens.md):
 
-1. **Sign-off and deleting stay human.** No token can move an item into or out of Done, or delete an item. The CLI has no command that tries to; the server enforces it with `SIGN_OFF_REQUIRES_PERSON` and `DELETE_REQUIRES_PERSON`. A person deletes in TaskHub, where items go to Trash for 30 days; an item in Trash is `NOT_FOUND` to the API.
+1. **Sign-off and deleting stay human.** No token can move an item into or out of Done, or delete an item. The CLI has no command that tries to; the server enforces it with `SIGN_OFF_REQUIRES_PERSON` and `DELETE_REQUIRES_PERSON`. A person deletes in TaskHub, where items go to Trash until the Admin removes them; an item in Trash is `NOT_FOUND` to the API.
 2. **Agent work shows as "username (agent)"** in TaskHub. The CLI displays people the same way.
 3. **Tokens never exceed their owner**: explicit project grants, read or write profile, the owner's live role.
 4. **The agent gets the whole loop** in a few commands:
