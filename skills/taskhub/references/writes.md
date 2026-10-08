@@ -24,6 +24,7 @@ taskhub items update WEB-12 --if-version 7 --priority high
 | `VERSION_CONFLICT` or `STATUS_CONFLICT` | Someone changed the item. Run `taskhub show`, and redo the write only if it still matches what the user asked for. |
 | `ALREADY_CLAIMED` | Another agent took it. Run `taskhub next --claim`. |
 | `SIGN_OFF_REQUIRES_PERSON` | Stop. Tell the user a Tester signs off in TaskHub. |
+| `NOT_FOUND` on an item you were working on | It may have been deleted. Stop and tell the user; don't recreate it. |
 | `REPLAY_WINDOW_EXPIRED` | Retry protection has ended. Use `taskhub show` to check whether the write happened before doing anything else. |
 | `IDEMPOTENCY_CONFLICT` | Investigate; don't work around it. |
 | Authentication, permission or validation errors | Fix the cause the hint names; don't retry unchanged. |

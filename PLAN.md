@@ -8,7 +8,7 @@ Date: 2026-10-07. Status: revised after the second three-agent review (security,
 
 These are shared with the [TaskHub API and tokens plan](../TaskHub/docs/plans/2026-10-07-agent-api-and-tokens.md):
 
-1. **Sign-off stays human.** No token can move an item into or out of Done. The CLI has no command that tries to; the server enforces it with `SIGN_OFF_REQUIRES_PERSON`.
+1. **Sign-off and deleting stay human.** No token can move an item into or out of Done, or delete an item. The CLI has no command that tries to; the server enforces it with `SIGN_OFF_REQUIRES_PERSON` and `DELETE_REQUIRES_PERSON`. A person deletes in TaskHub, where items go to Trash for 30 days; an item in Trash is `NOT_FOUND` to the API.
 2. **Agent work shows as "username (agent)"** in TaskHub. The CLI displays people the same way.
 3. **Tokens never exceed their owner**: explicit project grants, read or write profile, the owner's live role.
 4. **The agent gets the whole loop** in a few commands:
@@ -188,6 +188,7 @@ API Problem Details map into `error.code`, `message`, `httpStatus` and `details`
 | `STATUS_CONFLICT` | `taskhub show REF` |
 | `ALREADY_CLAIMED` | `taskhub next --claim` |
 | `SIGN_OFF_REQUIRES_PERSON` | Ask a Tester to sign off in TaskHub, with the item URL |
+| `DELETE_REQUIRES_PERSON` | Ask a person to delete it in TaskHub, with the item URL |
 | `UNAUTHENTICATED` (expired or revoked) | Create a token at `<origin>/settings/tokens`, then `taskhub auth login --with-token` |
 | `READ_ONLY_TOKEN` | Create a Read and write token for this project |
 | `RATE_LIMITED` | Wait `retryAfterSeconds` |
@@ -219,7 +220,7 @@ Agents use `error.code` and `meta.operation.outcome` (`committed`, `rejected` or
 | `BAD_REQUEST`, `INVALID_CURSOR`, `PAYLOAD_TOO_LARGE`, `UNSUPPORTED_FILE_TYPE`, `VALIDATION_FAILED`, `UNKNOWN_USER`, `UNKNOWN_LABEL`, `INVALID_TRANSITION`, `ATTACHMENT_NOT_AVAILABLE`, `RESPONSE_TOO_LARGE` | 2 | No |
 | `IDEMPOTENCY_KEY_REQUIRED` | 1, since it means a CLI bug | No |
 | `UNAUTHENTICATED` | 3 | No |
-| `READ_ONLY_TOKEN`, `SIGN_OFF_REQUIRES_PERSON`, `NOT_AGENT_COMMENT`, `PROJECT_ARCHIVED` | 4 | No |
+| `READ_ONLY_TOKEN`, `SIGN_OFF_REQUIRES_PERSON`, `DELETE_REQUIRES_PERSON`, `NOT_AGENT_COMMENT`, `PROJECT_ARCHIVED` | 4 | No |
 | `NOT_FOUND` | 5 | No |
 | `VERSION_CONFLICT`, `STATUS_CONFLICT`, `ALREADY_CLAIMED`, `IDEMPOTENCY_CONFLICT` | 6 | No (`next --claim` handles `ALREADY_CLAIMED` itself) |
 | `IDEMPOTENCY_IN_PROGRESS` | 6 | Once, after one second, with the same key |
@@ -371,6 +372,7 @@ Along the way, kill the CLI after a submission is sent and run `retry`; revoke a
 | `http://localhost` origin | Refused; `http://127.0.0.1` allowed |
 | Expired, revoked, read-only token | Exit 3 or 4 with the right hint |
 | Agent moves to or from Done | Exit 4, `SIGN_OFF_REQUIRES_PERSON` |
+| Item deleted to Trash mid-work | Exit 5, `NOT_FOUND`; `outcome: rejected`, not unknown |
 | Ref omitted on a `feature/web-12-x` branch, on `main`, outside git | `WEB-12` used and reported; `REF_REQUIRED`; `REF_REQUIRED` |
 | Two concurrent `next --claim` | Different items or one `ALREADY_CLAIMED` followed by the next item |
 | Process killed after a write is sent | `pending` lists it; `retry` returns the original receipt once |
