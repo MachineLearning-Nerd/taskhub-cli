@@ -76,4 +76,6 @@ TaskHub's activity for both items: created and commented by the Tester's token, 
 
 **Fixed after these runs:** `SKILL.md`'s work loop showed `taskhub branch --create` with no key right after `next --claim`. That only works inside an item branch. Codex followed it literally and got `REF_REQUIRED`; Claude happened to pass the key. The loop now reads `taskhub branch WEB-12 --create`.
 
-Still to run: both clients without the skill, and a rerun with the corrected work loop.
+**Codex rerun with the corrected loop (E2E-115, 60 s):** `taskhub branch E2E-115 --create` was called with the key on the first try, and no `REF_REQUIRED` occurred. The run used 6 `taskhub` calls plus `next --help` and `submit --help`, made 8 commands and 2 file changes, and used 169,067 input tokens (146,176 cached) and 1,541 output tokens. It ended with one claim and one submission. The branch still couldn't be created because `.git` is read-only in Codex's `workspace-write` sandbox, which Codex reported under limitations.
+
+Still to run: both clients without the skill.
