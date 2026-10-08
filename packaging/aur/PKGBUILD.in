@@ -9,7 +9,8 @@ arch=('x86_64' 'aarch64')
 url="@REPOSITORY@"
 license=('MIT')
 provides=('taskhub-cli')
-conflicts=('taskhub-cli')
+# 'taskhub' is an unrelated AUR to-do app that also installs /usr/bin/taskhub.
+conflicts=('taskhub-cli' 'taskhub')
 options=('!strip' '!debug')
 source_x86_64=("@REPOSITORY@/releases/download/v${pkgver}/taskhub-cli-x86_64-unknown-linux-musl.tar.xz")
 source_aarch64=("@REPOSITORY@/releases/download/v${pkgver}/taskhub-cli-aarch64-unknown-linux-musl.tar.xz")
