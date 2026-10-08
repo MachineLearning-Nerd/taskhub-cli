@@ -2,7 +2,7 @@
 
 `taskhub` is one self-contained binary. Releases cover Linux (static musl builds, x86_64 and aarch64) and macOS (Intel and Apple silicon). Every archive holds the binary, the man page, shell completions, the README and the license, with a SHA-256 checksum and a GitHub build attestation.
 
-> **Not published yet.** The repository, release tags, Homebrew tap and AUR package don't exist until the owner creates them. The commands below show the intended layout; the names in them (`MachineLearning-Nerd/taskhub-cli`, the tap, `taskhub-cli-bin`) are proposals. Until then, build from source.
+Releases: <https://github.com/MachineLearning-Nerd/taskhub-cli/releases>. The AUR package `taskhub-cli-bin` is prepared but not yet published.
 
 ## Shell installer (Linux and macOS)
 
