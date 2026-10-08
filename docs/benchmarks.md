@@ -98,4 +98,4 @@ The same task with no skill installed. The prompt adds only "The taskhub CLI is 
 | Claude Code | 33 s, $0.32, 9 tool calls, 0 help lookups | 39 s, $0.36, 10 tool calls, 3 lookups (`--help`, `guide`, `next --help`) |
 | Codex | 60–63 s, 2 help lookups | 121 s, 5 lookups (`--help`, `guide`, three subcommand `--help`) |
 
-Both clients found `taskhub guide` from the top-level help without being told, and then followed the same rules as with the skill: no Done move, real test output as evidence, one claim and one submission. The skill saves the discovery round. In these runs that meant 15% of the time and cost for Claude Code and half the time for Codex. Without the skill, `guide` is what keeps the CLI usable.
+Both clients found `taskhub guide` from the top-level help without being told, and then followed the same rules as with the skill: no Done move, real test output as evidence, one claim and one submission. The skill saves the discovery round. In these runs that meant about 15% of the time and 10% of the cost for Claude Code, and half the time for Codex. Without the skill, `guide` is what keeps the CLI usable.
