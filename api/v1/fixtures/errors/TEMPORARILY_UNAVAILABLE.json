@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/temporarily-unavailable",
+  "type": "https://taskhub.example/api/v1/problems/temporarily-unavailable",
   "title": "Temporarily unavailable",
   "status": 503,
   "code": "TEMPORARILY_UNAVAILABLE"

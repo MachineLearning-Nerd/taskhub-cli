@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/validation-failed",
+  "type": "https://taskhub.example/api/v1/problems/validation-failed",
   "title": "Validation failed",
   "status": 422,
   "code": "VALIDATION_FAILED",

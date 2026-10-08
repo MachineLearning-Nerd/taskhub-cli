@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/response-too-large",
+  "type": "https://taskhub.example/api/v1/problems/response-too-large",
   "title": "Response too large",
   "status": 422,
   "code": "RESPONSE_TOO_LARGE",

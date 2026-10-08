@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/unauthenticated",
+  "type": "https://taskhub.example/api/v1/problems/unauthenticated",
   "title": "Unauthenticated",
   "status": 401,
   "code": "UNAUTHENTICATED",

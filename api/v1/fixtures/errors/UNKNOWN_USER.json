@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/unknown-user",
+  "type": "https://taskhub.example/api/v1/problems/unknown-user",
   "title": "Unknown user",
   "status": 422,
   "code": "UNKNOWN_USER",

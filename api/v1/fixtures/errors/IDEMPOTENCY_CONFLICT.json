@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/idempotency-conflict",
+  "type": "https://taskhub.example/api/v1/problems/idempotency-conflict",
   "title": "Idempotency conflict",
   "status": 409,
   "code": "IDEMPOTENCY_CONFLICT"

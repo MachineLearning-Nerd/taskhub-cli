@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/unknown-label",
+  "type": "https://taskhub.example/api/v1/problems/unknown-label",
   "title": "Unknown label",
   "status": 422,
   "code": "UNKNOWN_LABEL",

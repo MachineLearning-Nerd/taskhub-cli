@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/client-upgrade-required",
+  "type": "https://taskhub.example/api/v1/problems/client-upgrade-required",
   "title": "Client upgrade required",
   "status": 400,
   "code": "CLIENT_UPGRADE_REQUIRED",

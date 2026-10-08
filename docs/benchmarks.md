@@ -7,7 +7,7 @@ Measured, not claimed (see [PLAN.md](../PLAN.md#measurement)). Every number here
 | | |
 | --- | --- |
 | Date | 2026-10-08 |
-| CLI | `taskhub` 0.1.0, release build, contract `3f41586` |
+| CLI | `taskhub` 0.1.0, release build, contract `3f41586` (now `6a61b8e`: only error `type` URLs changed) |
 | Server | TaskHub `3f41586` on `http://127.0.0.1:3100` (`next dev`, local libSQL file), same machine |
 | Machine | Intel Core i5-7300HQ (4 cores), Linux 7.1.8, rustc 1.97.1 |
 

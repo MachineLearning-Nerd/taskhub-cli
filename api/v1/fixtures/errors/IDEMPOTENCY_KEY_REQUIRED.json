@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/idempotency-key-required",
+  "type": "https://taskhub.example/api/v1/problems/idempotency-key-required",
   "title": "Idempotency key required",
   "status": 400,
   "code": "IDEMPOTENCY_KEY_REQUIRED"

@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/attachment-not-available",
+  "type": "https://taskhub.example/api/v1/problems/attachment-not-available",
   "title": "Attachment not available",
   "status": 422,
   "code": "ATTACHMENT_NOT_AVAILABLE",

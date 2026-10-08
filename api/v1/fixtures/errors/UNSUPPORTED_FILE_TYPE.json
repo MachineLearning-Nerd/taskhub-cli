@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/unsupported-file-type",
+  "type": "https://taskhub.example/api/v1/problems/unsupported-file-type",
   "title": "Unsupported file type",
   "status": 415,
   "code": "UNSUPPORTED_FILE_TYPE",

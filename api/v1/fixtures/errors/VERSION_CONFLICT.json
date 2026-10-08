@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/version-conflict",
+  "type": "https://taskhub.example/api/v1/problems/version-conflict",
   "title": "Version conflict",
   "status": 409,
   "code": "VERSION_CONFLICT",

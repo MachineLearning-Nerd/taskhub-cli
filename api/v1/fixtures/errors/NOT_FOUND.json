@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/not-found",
+  "type": "https://taskhub.example/api/v1/problems/not-found",
   "title": "Not found",
   "status": 404,
   "code": "NOT_FOUND"

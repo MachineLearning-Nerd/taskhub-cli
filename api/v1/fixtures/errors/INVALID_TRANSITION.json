@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/invalid-transition",
+  "type": "https://taskhub.example/api/v1/problems/invalid-transition",
   "title": "Invalid transition",
   "status": 422,
   "code": "INVALID_TRANSITION",

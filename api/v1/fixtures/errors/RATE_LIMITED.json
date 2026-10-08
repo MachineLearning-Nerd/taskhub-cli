@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/rate-limited",
+  "type": "https://taskhub.example/api/v1/problems/rate-limited",
   "title": "Rate limited",
   "status": 429,
   "code": "RATE_LIMITED",

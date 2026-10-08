@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/bad-request",
+  "type": "https://taskhub.example/api/v1/problems/bad-request",
   "title": "Bad request",
   "status": 400,
   "code": "BAD_REQUEST"

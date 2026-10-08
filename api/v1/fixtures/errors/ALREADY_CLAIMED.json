@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/already-claimed",
+  "type": "https://taskhub.example/api/v1/problems/already-claimed",
   "title": "Already claimed",
   "status": 409,
   "code": "ALREADY_CLAIMED",

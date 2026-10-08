@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/delete-requires-person",
+  "type": "https://taskhub.example/api/v1/problems/delete-requires-person",
   "title": "Delete requires person",
   "status": 403,
   "code": "DELETE_REQUIRES_PERSON",

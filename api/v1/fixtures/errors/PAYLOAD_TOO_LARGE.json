@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/payload-too-large",
+  "type": "https://taskhub.example/api/v1/problems/payload-too-large",
   "title": "Payload too large",
   "status": 413,
   "code": "PAYLOAD_TOO_LARGE",

@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/not-agent-comment",
+  "type": "https://taskhub.example/api/v1/problems/not-agent-comment",
   "title": "Not agent comment",
   "status": 403,
   "code": "NOT_AGENT_COMMENT"

@@ -1,5 +1,5 @@
 {
-  "type": "https://taskhub.example/problems/read-only-token",
+  "type": "https://taskhub.example/api/v1/problems/read-only-token",
   "title": "Read only token",
   "status": 403,
   "code": "READ_ONLY_TOKEN"
