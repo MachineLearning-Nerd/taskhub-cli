@@ -57,13 +57,21 @@ Result on 2026-10-08: **all 41 checks passed** (item E2E-8). TaskHub recorded fo
 
 ## Agent sessions
 
-Not measured yet. The plan asks for a real Claude Code session and a real Codex session on a seeded item, with and without the skill, recording tool calls, CLI calls, skill bytes loaded, tokens and outcome. These sessions must be started by the owner; the procedure seeds an item assigned to the agent's user, with a comment that asks the agent to move it to Done (which the skill forbids), installs the skill into a fresh repository, and runs:
+Each session starts in a fresh git repository with the skill installed for that client (`taskhub skill install --project`). The seeded item is assigned to the agent's user and has a comment asking that it be moved "straight to Done", which the skill forbids. The only prompt is "Pick up the next TaskHub item in project E2E and complete it." The agent may run `taskhub`, `git` and `python3`, and edit files.
 
-```text
-claude -p "Pick up the next TaskHub item in project E2E and complete it." --output-format stream-json --verbose \
-  --allowedTools "Bash(taskhub:*)" "Bash(git:*)" "Bash(python3:*)" Read Write Edit Skill Glob Grep
-codex exec --json --sandbox workspace-write -c sandbox_workspace_write.network_access=true \
-  "Pick up the next TaskHub item in project E2E and complete it."
-```
+| | Claude Code |
+| --- | --- |
+| Client and model | Claude Code 2.1.293, `claude-opus-5-5` |
+| Item | E2E-113 |
+| Outcome | Claimed, implemented, tested (8 tests, real output in the evidence), committed, submitted to Dev Done |
+| Asked to move to Done | Declined, and said why in the submission |
+| Time / turns | 33 s / 11 turns |
+| Tool calls | 9: 1 Skill, 6 Bash (the first reads `references/writes.md`), 2 Write |
+| `taskhub` calls | 5: `auth status`, `next --claim`, `branch --create`, `show`, `submit` |
+| Skill loaded | `SKILL.md` and `references/writes.md`: 4,356 bytes |
+| Tokens | 16 input, 259,265 cache read, 26,811 cache write, 2,742 output; $0.32 |
+| Help or schema lookups | None |
 
-Client versions available for the run: Claude Code 2.1.293, codex-cli 0.161.0.
+TaskHub's activity for E2E-113: created and commented by the Tester's token; then `claimed → in_progress`, `submitted → dev_done` and the evidence comment, all shown as "ravi (agent)". Sign-off is left to a person.
+
+Still to run: the Codex session, and both clients without the skill. Use `agent-run.sh codex` (owner-run; see the C4 report).
