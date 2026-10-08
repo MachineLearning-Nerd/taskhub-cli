@@ -1,0 +1,864 @@
+#compdef taskhub
+
+autoload -U is-at-least
+
+_taskhub() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help (see more with '\''--help'\'')]' \
+'--help[Print help (see more with '\''--help'\'')]' \
+'-V[Print version]' \
+'--version[Print version]' \
+":: :_taskhub_commands" \
+"*::: :->taskhub" \
+&& ret=0
+    case $state in
+    (taskhub)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-command-$line[1]:"
+        case $line[1] in
+            (next)
+_arguments "${_arguments_options[@]}" : \
+'*--project=[Only these projects]:KEY:_default' \
+'--type=[]:ITEM_TYPE:(task bug)' \
+'--claim[Claim the item (assigned or unassigned work), retrying the next item if another agent wins]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(claim)
+_arguments "${_arguments_options[@]}" : \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference -- Item key such as WEB-12. Taken from the git branch when left out:_default' \
+&& ret=0
+;;
+(show)
+_arguments "${_arguments_options[@]}" : \
+'--comments=[How many of the latest comments to include (1–100)]:COMMENTS:_default' \
+'--attachments=[How many files to include (1–100)]:ATTACHMENTS:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(mine)
+_arguments "${_arguments_options[@]}" : \
+'*--status=[]:STATUSES:(todo in_progress dev_done done)' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(comment)
+_arguments "${_arguments_options[@]}" : \
+'--body=[Comment text (Markdown)]:BODY:_default' \
+'--body-file=[Read the comment from a file, or \`-\` for stdin]:PATH:_files' \
+'*--attach=[Attach files (png, jpg, gif, webp, pdf, md, docx; up to 4 MB each)]:FILE:_files' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(submit)
+_arguments "${_arguments_options[@]}" : \
+'--from=[The status you saw; the submission fails if the item has moved since]:FROM:(todo in_progress dev_done done)' \
+'(--summary-file)--summary=[What changed]:SUMMARY:_default' \
+'--summary-file=[]:PATH:_files' \
+'(--testing-file)--testing=[How it was tested. Name tests you did not run under limitations]:TESTING:_default' \
+'--testing-file=[]:PATH:_files' \
+'(--limitations-file)--limitations=[]:LIMITATIONS:_default' \
+'--limitations-file=[]:PATH:_files' \
+'*--attach=[]:FILE:_files' \
+'--pr=[Pull request URL, or \`auto\` to ask \`gh\` for the current branch'\''s PR]:URL|auto:_default' \
+'*--link=[Related links]:URL:_default' \
+'--input-file=[Read summary, testing, limitations, links and files from a JSON file (or \`-\`)]:PATH:_files' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(reject)
+_arguments "${_arguments_options[@]}" : \
+'--reason=[]:REASON:_default' \
+'--reason-file=[]:PATH:_files' \
+'*--attach=[]:FILE:_files' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':reference:_default' \
+&& ret=0
+;;
+(inbox)
+_arguments "${_arguments_options[@]}" : \
+'*--kind=[]:KINDS:(mention assigned rejected review)' \
+'--limit=[]:LIMIT:_default' \
+'--cursor=[]:CURSOR:_default' \
+'--unread[]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__inbox_commands" \
+"*::: :->inbox" \
+&& ret=0
+
+    case $state in
+    (inbox)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-inbox-command-$line[1]:"
+        case $line[1] in
+            (done)
+_arguments "${_arguments_options[@]}" : \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'--all[]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::ids:_default' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(link)
+_arguments "${_arguments_options[@]}" : \
+'--kind=[]:KIND:(pr link)' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::positionals -- `\[REF\] URL`\: REF is used only if it looks like KEY-N:_default' \
+&& ret=0
+;;
+(branch)
+_arguments "${_arguments_options[@]}" : \
+'--create[Switch to the branch, creating it if needed]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(open)
+_arguments "${_arguments_options[@]}" : \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference -- Item key such as WEB-12. Taken from the git branch when left out:_default' \
+&& ret=0
+;;
+(items)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__items_commands" \
+"*::: :->items" \
+&& ret=0
+
+    case $state in
+    (items)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-items-command-$line[1]:"
+        case $line[1] in
+            (list)
+_arguments "${_arguments_options[@]}" : \
+'*--project=[]:KEY:_default' \
+'--type=[]:ITEM_TYPE:(task bug)' \
+'*--status=[]:STATUSES:(todo in_progress dev_done done)' \
+'--priority=[]:PRIORITY:(high medium low)' \
+'--assignee=[\`me\`, \`none\` or a username]:ASSIGNEE:_default' \
+'*--label=[Items with any of these labels]:NAME:_default' \
+'--search=[]:SEARCH:_default' \
+'--sort=[]:SORT:(number priority)' \
+'--limit=[]:LIMIT:_default' \
+'--cursor=[]:CURSOR:_default' \
+'--agent[Only items agents have worked on]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(get)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(activity)
+_arguments "${_arguments_options[@]}" : \
+'--limit=[]:LIMIT:_default' \
+'--cursor=[]:CURSOR:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(create)
+_arguments "${_arguments_options[@]}" : \
+'--project=[]:PROJECT:_default' \
+'--type=[]:ITEM_TYPE:(task bug)' \
+'--title=[]:TITLE:_default' \
+'(--body-file)--description=[The description (Markdown)]:DESCRIPTION:_default' \
+'--body-file=[Read the description from a file, or \`-\` for stdin]:PATH:_files' \
+'--priority=[]:PRIORITY:(high medium low)' \
+'--assignee=[]:ASSIGNEE:_default' \
+'*--label=[]:NAME:_default' \
+'--input-file=[Read the fields from a JSON file (or \`-\`)\: project, type, title, description, priority, assignee, labels]:PATH:_files' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" : \
+'--if-version=[The version you saw; the edit fails if the item changed since]:N:_default' \
+'--type=[]:ITEM_TYPE:(task bug)' \
+'--title=[]:TITLE:_default' \
+'(--body-file)--description=[The new description (Markdown)]:DESCRIPTION:_default' \
+'--body-file=[Read the new description from a file, or \`-\` for stdin]:PATH:_files' \
+'--priority=[]:PRIORITY:(high medium low)' \
+'--assignee=[A username, or \`none\` to unassign]:ASSIGNEE:_default' \
+'(--no-labels)*--label=[Replace the labels with these]:NAME:_default' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'--no-labels[Remove every label]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(move)
+_arguments "${_arguments_options[@]}" : \
+'--from=[The status you saw]:FROM:(todo in_progress dev_done done)' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::positionals -- `\[REF\] STATUS`\: REF is used only if it looks like KEY-N:_default' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(comments)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__comments_commands" \
+"*::: :->comments" \
+&& ret=0
+
+    case $state in
+    (comments)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-comments-command-$line[1]:"
+        case $line[1] in
+            (list)
+_arguments "${_arguments_options[@]}" : \
+'--limit=[]:LIMIT:_default' \
+'--cursor=[]:CURSOR:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(edit)
+_arguments "${_arguments_options[@]}" : \
+'--body=[]:BODY:_default' \
+'--body-file=[]:PATH:_files' \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id:_default' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(attachments)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__attachments_commands" \
+"*::: :->attachments" \
+&& ret=0
+
+    case $state in
+    (attachments)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-attachments-command-$line[1]:"
+        case $line[1] in
+            (list)
+_arguments "${_arguments_options[@]}" : \
+'--limit=[]:LIMIT:_default' \
+'--cursor=[]:CURSOR:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'::reference:_default' \
+&& ret=0
+;;
+(add)
+_arguments "${_arguments_options[@]}" : \
+'--request-id=[Use this UUID as the operation ID and Idempotency-Key (for callers that keep their own records)]:UUID:_default' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::positionals -- `\[REF\] FILE...`\: REF is used only if it looks like KEY-N:_default' \
+&& ret=0
+;;
+(download)
+_arguments "${_arguments_options[@]}" : \
+'-o+[]:PATH:_files' \
+'--output=[]:PATH:_files' \
+'--force[Replace an existing file]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id:_default' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(projects)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__projects_commands" \
+"*::: :->projects" \
+&& ret=0
+
+    case $state in
+    (projects)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-projects-command-$line[1]:"
+        case $line[1] in
+            (list)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(show)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':key:_default' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(pending)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__pending_commands" \
+"*::: :->pending" \
+&& ret=0
+
+    case $state in
+    (pending)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-pending-command-$line[1]:"
+        case $line[1] in
+            (discard)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id:_default' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(retry)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':id:_default' \
+&& ret=0
+;;
+(auth)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__auth_commands" \
+"*::: :->auth" \
+&& ret=0
+
+    case $state in
+    (auth)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-auth-command-$line[1]:"
+        case $line[1] in
+            (login)
+_arguments "${_arguments_options[@]}" : \
+'--origin=[The TaskHub server. HTTPS, or http\://127.0.0.1 for local development]:URL:_default' \
+'--with-token[Read the token from stdin]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(status)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(logout)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(guide)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(skill)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+":: :_taskhub__subcmd__skill_commands" \
+"*::: :->skill" \
+&& ret=0
+
+    case $state in
+    (skill)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:taskhub-skill-command-$line[1]:"
+        case $line[1] in
+            (install)
+_arguments "${_arguments_options[@]}" : \
+'--client=[]:CLIENT:(claude codex all)' \
+'--project[Install into this repository instead of your home directory]' \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(mcp)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(completions)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+':shell:(bash elvish fish powershell zsh)' \
+&& ret=0
+;;
+(version)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+(man)
+_arguments "${_arguments_options[@]}" : \
+'(--human)--json[Print the JSON envelope even on a terminal]' \
+'--human[Print human-readable output even when piped]' \
+'-h[Print help]' \
+'--help[Print help]' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_taskhub_commands] )) ||
+_taskhub_commands() {
+    local commands; commands=(
+'next:Find the next item to work on\: sent-back work first, then assigned, then unassigned' \
+'claim:Assign an item to yourself and move it from To Do to In Progress' \
+'show:Show an item with its project, allowed moves, latest comments, files and links' \
+'mine:Your To Do and In Progress items' \
+'comment:Add a Markdown comment; @username notifies' \
+'submit:Submit work for review\: evidence comment, links and the move to Dev Done in one step' \
+'reject:Send an item in Dev Done back to In Progress with a reason (Testers)' \
+'inbox:Inbox entries for your projects. Reading never marks them read' \
+'link:Add a link to an item; adding the same URL again is harmless' \
+'branch:Print a branch name for an item, or switch to it with --create' \
+'open:Open the item in the browser (prints the URL when not on a terminal)' \
+'items:List, read, create, edit and move items' \
+'comments:List and edit comments' \
+'attachments:List, upload and download files' \
+'projects:List projects and show their labels, members and limits' \
+'pending:Writes whose outcome is unknown' \
+'retry:Resend a pending write exactly, with its original request ID' \
+'auth:Log in with an API token, check the login, or log out' \
+'guide:A one-page guide for agents' \
+'skill:Install the TaskHub agent skill for Claude Code or Codex' \
+'mcp:Serve TaskHub tools over MCP on stdin and stdout' \
+'completions:Print shell completions' \
+'version:Print the CLI, contract and API versions. Works offline' \
+'man:Write the man page to stdout (for packaging)' \
+    )
+    _describe -t commands 'taskhub commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__attachments_commands] )) ||
+_taskhub__subcmd__attachments_commands() {
+    local commands; commands=(
+'list:File metadata' \
+'add:Upload files to an item' \
+'download:Download a file' \
+    )
+    _describe -t commands 'taskhub attachments commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__attachments__subcmd__add_commands] )) ||
+_taskhub__subcmd__attachments__subcmd__add_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub attachments add commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__attachments__subcmd__download_commands] )) ||
+_taskhub__subcmd__attachments__subcmd__download_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub attachments download commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__attachments__subcmd__list_commands] )) ||
+_taskhub__subcmd__attachments__subcmd__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub attachments list commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__auth_commands] )) ||
+_taskhub__subcmd__auth_commands() {
+    local commands; commands=(
+'login:Save an API token. Reads it from stdin with --with-token, or prompts on a terminal' \
+'status:Who you are logged in as, and where the credential came from' \
+'logout:Delete the saved credentials' \
+    )
+    _describe -t commands 'taskhub auth commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__auth__subcmd__login_commands] )) ||
+_taskhub__subcmd__auth__subcmd__login_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub auth login commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__auth__subcmd__logout_commands] )) ||
+_taskhub__subcmd__auth__subcmd__logout_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub auth logout commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__auth__subcmd__status_commands] )) ||
+_taskhub__subcmd__auth__subcmd__status_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub auth status commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__branch_commands] )) ||
+_taskhub__subcmd__branch_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub branch commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__claim_commands] )) ||
+_taskhub__subcmd__claim_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub claim commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__comment_commands] )) ||
+_taskhub__subcmd__comment_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub comment commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__comments_commands] )) ||
+_taskhub__subcmd__comments_commands() {
+    local commands; commands=(
+'list:Comments, newest first. Continue with --cursor' \
+'edit:Edit a comment you wrote through a token' \
+    )
+    _describe -t commands 'taskhub comments commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__comments__subcmd__edit_commands] )) ||
+_taskhub__subcmd__comments__subcmd__edit_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub comments edit commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__comments__subcmd__list_commands] )) ||
+_taskhub__subcmd__comments__subcmd__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub comments list commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__completions_commands] )) ||
+_taskhub__subcmd__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub completions commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__guide_commands] )) ||
+_taskhub__subcmd__guide_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub guide commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__inbox_commands] )) ||
+_taskhub__subcmd__inbox_commands() {
+    local commands; commands=(
+'done:Mark entries read' \
+    )
+    _describe -t commands 'taskhub inbox commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__inbox__subcmd__done_commands] )) ||
+_taskhub__subcmd__inbox__subcmd__done_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub inbox done commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__items_commands] )) ||
+_taskhub__subcmd__items_commands() {
+    local commands; commands=(
+'list:Item summaries' \
+'get:One item' \
+'activity:The activity timeline' \
+'create:Create an item in To Do' \
+'update:Change some fields; the rest stay as they are' \
+'move:Move between To Do, In Progress and Dev Done' \
+    )
+    _describe -t commands 'taskhub items commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__items__subcmd__activity_commands] )) ||
+_taskhub__subcmd__items__subcmd__activity_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub items activity commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__items__subcmd__create_commands] )) ||
+_taskhub__subcmd__items__subcmd__create_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub items create commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__items__subcmd__get_commands] )) ||
+_taskhub__subcmd__items__subcmd__get_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub items get commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__items__subcmd__list_commands] )) ||
+_taskhub__subcmd__items__subcmd__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub items list commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__items__subcmd__move_commands] )) ||
+_taskhub__subcmd__items__subcmd__move_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub items move commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__items__subcmd__update_commands] )) ||
+_taskhub__subcmd__items__subcmd__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub items update commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__link_commands] )) ||
+_taskhub__subcmd__link_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub link commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__man_commands] )) ||
+_taskhub__subcmd__man_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub man commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__mcp_commands] )) ||
+_taskhub__subcmd__mcp_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub mcp commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__mine_commands] )) ||
+_taskhub__subcmd__mine_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub mine commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__next_commands] )) ||
+_taskhub__subcmd__next_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub next commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__open_commands] )) ||
+_taskhub__subcmd__open_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub open commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__pending_commands] )) ||
+_taskhub__subcmd__pending_commands() {
+    local commands; commands=(
+'discard:Forget a pending write after checking it yourself' \
+    )
+    _describe -t commands 'taskhub pending commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__pending__subcmd__discard_commands] )) ||
+_taskhub__subcmd__pending__subcmd__discard_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub pending discard commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__projects_commands] )) ||
+_taskhub__subcmd__projects_commands() {
+    local commands; commands=(
+'list:Projects you can reach with this token' \
+'show:One project\: labels, members, enums and limits' \
+    )
+    _describe -t commands 'taskhub projects commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__projects__subcmd__list_commands] )) ||
+_taskhub__subcmd__projects__subcmd__list_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub projects list commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__projects__subcmd__show_commands] )) ||
+_taskhub__subcmd__projects__subcmd__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub projects show commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__reject_commands] )) ||
+_taskhub__subcmd__reject_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub reject commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__retry_commands] )) ||
+_taskhub__subcmd__retry_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub retry commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__show_commands] )) ||
+_taskhub__subcmd__show_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub show commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__skill_commands] )) ||
+_taskhub__subcmd__skill_commands() {
+    local commands; commands=(
+'install:Write the embedded skill into Claude Code'\''s and/or Codex'\''s skill directory' \
+    )
+    _describe -t commands 'taskhub skill commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__skill__subcmd__install_commands] )) ||
+_taskhub__subcmd__skill__subcmd__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub skill install commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__submit_commands] )) ||
+_taskhub__subcmd__submit_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub submit commands' commands "$@"
+}
+(( $+functions[_taskhub__subcmd__version_commands] )) ||
+_taskhub__subcmd__version_commands() {
+    local commands; commands=()
+    _describe -t commands 'taskhub version commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_taskhub" ]; then
+    _taskhub "$@"
+else
+    compdef _taskhub taskhub
+fi

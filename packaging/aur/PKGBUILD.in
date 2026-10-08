@@ -1,0 +1,27 @@
+# AUR package template for the released taskhub binary. scripts/render-packaging.sh fills in @VERSION@ and
+# the checksums from a release's .sha256 files; then run `makepkg --printsrcinfo > .SRCINFO`.
+# Maintainer: Dinesh Jinjala <@MAINTAINER_EMAIL@>
+pkgname=taskhub-cli-bin
+pkgver=@VERSION@
+pkgrel=1
+pkgdesc="Command-line client and MCP server for TaskHub"
+arch=('x86_64' 'aarch64')
+url="@REPOSITORY@"
+license=('MIT')
+provides=('taskhub-cli')
+conflicts=('taskhub-cli')
+options=('!strip' '!debug')
+source_x86_64=("@REPOSITORY@/releases/download/v${pkgver}/taskhub-cli-x86_64-unknown-linux-musl.tar.xz")
+source_aarch64=("@REPOSITORY@/releases/download/v${pkgver}/taskhub-cli-aarch64-unknown-linux-musl.tar.xz")
+sha256sums_x86_64=('@SHA256_X86_64_UNKNOWN_LINUX_MUSL@')
+sha256sums_aarch64=('@SHA256_AARCH64_UNKNOWN_LINUX_MUSL@')
+
+package() {
+  cd "taskhub-cli-${CARCH}-unknown-linux-musl"
+  install -Dm755 taskhub "$pkgdir/usr/bin/taskhub"
+  install -Dm644 taskhub.1 "$pkgdir/usr/share/man/man1/taskhub.1"
+  install -Dm644 completions/taskhub.bash "$pkgdir/usr/share/bash-completion/completions/taskhub"
+  install -Dm644 completions/_taskhub "$pkgdir/usr/share/zsh/site-functions/_taskhub"
+  install -Dm644 completions/taskhub.fish "$pkgdir/usr/share/fish/vendor_completions.d/taskhub.fish"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

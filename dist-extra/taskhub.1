@@ -1,0 +1,96 @@
+.ie \n(.g .ds Aq \(aq
+.el .ds Aq '
+.TH taskhub 1  "taskhub 0.1.0" 
+.SH NAME
+taskhub \- Work with TaskHub tasks and bugs from the terminal and from coding agents.
+.SH SYNOPSIS
+\fBtaskhub\fR [\fB\-\-json\fR] [\fB\-\-human\fR] [\fB\-h\fR|\fB\-\-help\fR] [\fB\-V\fR|\fB\-\-version\fR] <\fIsubcommands\fR>
+.SH DESCRIPTION
+Work with TaskHub tasks and bugs from the terminal and from coding agents.
+.PP
+Output is JSON when stdout is not a terminal. Start with `taskhub auth login`, then `taskhub next \-\-claim`.
+.SH OPTIONS
+.TP
+\fB\-\-json\fR
+Print the JSON envelope even on a terminal
+.TP
+\fB\-\-human\fR
+Print human\-readable output even when piped
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help (see a summary with \*(Aq\-h\*(Aq)
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Print version
+.SH SUBCOMMANDS
+.TP
+taskhub\-next(1)
+Find the next item to work on: sent\-back work first, then assigned, then unassigned
+.TP
+taskhub\-claim(1)
+Assign an item to yourself and move it from To Do to In Progress
+.TP
+taskhub\-show(1)
+Show an item with its project, allowed moves, latest comments, files and links
+.TP
+taskhub\-mine(1)
+Your To Do and In Progress items
+.TP
+taskhub\-comment(1)
+Add a Markdown comment; @username notifies
+.TP
+taskhub\-submit(1)
+Submit work for review: evidence comment, links and the move to Dev Done in one step
+.TP
+taskhub\-reject(1)
+Send an item in Dev Done back to In Progress with a reason (Testers)
+.TP
+taskhub\-inbox(1)
+Inbox entries for your projects. Reading never marks them read
+.TP
+taskhub\-link(1)
+Add a link to an item; adding the same URL again is harmless
+.TP
+taskhub\-branch(1)
+Print a branch name for an item, or switch to it with \-\-create
+.TP
+taskhub\-open(1)
+Open the item in the browser (prints the URL when not on a terminal)
+.TP
+taskhub\-items(1)
+List, read, create, edit and move items
+.TP
+taskhub\-comments(1)
+List and edit comments
+.TP
+taskhub\-attachments(1)
+List, upload and download files
+.TP
+taskhub\-projects(1)
+List projects and show their labels, members and limits
+.TP
+taskhub\-pending(1)
+Writes whose outcome is unknown
+.TP
+taskhub\-retry(1)
+Resend a pending write exactly, with its original request ID
+.TP
+taskhub\-auth(1)
+Log in with an API token, check the login, or log out
+.TP
+taskhub\-guide(1)
+A one\-page guide for agents
+.TP
+taskhub\-skill(1)
+Install the TaskHub agent skill for Claude Code or Codex
+.TP
+taskhub\-mcp(1)
+Serve TaskHub tools over MCP on stdin and stdout
+.TP
+taskhub\-completions(1)
+Print shell completions
+.TP
+taskhub\-version(1)
+Print the CLI, contract and API versions. Works offline
+.SH VERSION
+v0.1.0
