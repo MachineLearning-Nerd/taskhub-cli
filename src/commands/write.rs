@@ -457,8 +457,7 @@ pub fn items_update(args: ItemsUpdateArgs) -> Result<Success> {
     if let Some(title) = args.title {
         changes.title = Patch::Value(checked("The title", title, TITLE_LIMIT)?);
     }
-    if let Some(path) = &args.body_file {
-        let description = read_file(path, "--body-file", &stdin)?;
+    if let Some(description) = text(args.description, args.body_file.as_ref(), "--body-file", &stdin)? {
         if utf16_len(&description) > DESCRIPTION_LIMIT {
             return Err(CliError::input(format!(
                 "The description is longer than {DESCRIPTION_LIMIT} characters."
@@ -536,11 +535,11 @@ pub fn items_create(args: ItemsCreateArgs) -> Result<Success> {
         (a, b) => a.or(b).ok_or_else(|| CliError::input("Give a --title."))?,
     };
     let title = checked("The title", title, TITLE_LIMIT)?;
-    let description = match (&args.body_file, input.description) {
-        (Some(_), Some(_)) => return Err(both("description")),
-        (Some(path), None) => Some(read_file(path, "--body-file", &stdin)?),
-        (None, d) => d,
-    };
+    let description =
+        match (text(args.description, args.body_file.as_ref(), "--body-file", &stdin)?, input.description) {
+            (Some(_), Some(_)) => return Err(both("description")),
+            (a, b) => a.or(b),
+        };
     if description.as_deref().is_some_and(|d| utf16_len(d) > DESCRIPTION_LIMIT) {
         return Err(CliError::input(format!(
             "The description is longer than {DESCRIPTION_LIMIT} characters."

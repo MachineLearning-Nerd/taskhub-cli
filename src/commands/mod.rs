@@ -11,7 +11,7 @@ pub use auth::fetch_me;
 use crate::api::{self, Client, HintContext};
 use crate::cli::{
     AttachmentsCommand, Cli, Command, CommentsCommand, InboxAction, ItemsCommand, PendingAction,
-    ProjectsCommand,
+    ProjectsCommand, SkillCommand,
 };
 use crate::credentials::{self, Credential};
 use crate::error::{CliError, Result};
@@ -47,7 +47,13 @@ pub fn run(cli: Cli, mode: Mode) -> Result<Success> {
     // `auth` already reports expiry; offline commands must stay offline.
     let wants_notices = !matches!(
         cli.command,
-        Command::Auth(_) | Command::Version | Command::Completions(_) | Command::Man | Command::Guide
+        Command::Auth(_)
+            | Command::Version
+            | Command::Completions(_)
+            | Command::Man
+            | Command::Guide
+            | Command::Skill(_)
+            | Command::Mcp
     );
     let result = dispatch(cli.command);
     if mode == Mode::Human && wants_notices && result.is_ok() {
@@ -105,7 +111,15 @@ fn dispatch(command: Command) -> Result<Success> {
                 .map_err(|e| CliError::internal(format!("Could not render the man page: {e}")))?;
             Ok(raw(buffer))
         }
-        _ => Err(CliError::internal("This command is not implemented yet.")),
+        Command::Guide => {
+            let text = crate::skill::guide();
+            Ok(Success::new(json!({ "guide": text }), text))
+        }
+        Command::Skill(SkillCommand::Install(args)) => crate::skill::install(args),
+        Command::Mcp => {
+            crate::mcp::serve()?;
+            Ok(raw(Vec::new()))
+        }
     }
 }
 

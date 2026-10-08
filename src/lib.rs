@@ -11,8 +11,10 @@ pub mod digest;
 pub mod error;
 pub mod git;
 pub mod journal;
+pub mod mcp;
 pub mod output;
 pub mod refs;
+pub mod skill;
 pub mod token;
 pub mod types;
 

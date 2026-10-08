@@ -361,6 +361,10 @@ pub struct ItemsCreateArgs {
     pub item_type: Option<ItemTypeArg>,
     #[arg(long)]
     pub title: Option<String>,
+    /// The description (Markdown).
+    #[arg(long, conflicts_with = "body_file")]
+    pub description: Option<String>,
+    /// Read the description from a file, or `-` for stdin.
     #[arg(long, value_name = "PATH")]
     pub body_file: Option<PathBuf>,
     #[arg(long, value_enum)]
@@ -387,6 +391,10 @@ pub struct ItemsUpdateArgs {
     pub item_type: Option<ItemTypeArg>,
     #[arg(long)]
     pub title: Option<String>,
+    /// The new description (Markdown).
+    #[arg(long, conflicts_with = "body_file")]
+    pub description: Option<String>,
+    /// Read the new description from a file, or `-` for stdin.
     #[arg(long, value_name = "PATH")]
     pub body_file: Option<PathBuf>,
     #[arg(long, value_enum)]
