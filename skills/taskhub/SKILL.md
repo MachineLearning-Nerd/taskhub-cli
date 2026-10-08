@@ -14,11 +14,11 @@ Output is JSON when piped. Read `ok`, `data`, `meta` and `error.code`; follow `e
 ## Work loop
 
 ```text
-taskhub next --claim          # sent-back work first, then assigned, then unassigned
-taskhub branch --create       # inside that branch the item key is optional
-taskhub show                  # full context in one call
+taskhub next --claim             # sent-back work first, then assigned, then unassigned
+taskhub branch WEB-12 --create   # the claimed key; inside that branch the key is optional
+taskhub show                     # full context in one call
 taskhub comment --body-file progress.md
-taskhub inbox --unread        # mentions, assignments, items sent back
+taskhub inbox --unread           # mentions, assignments, items sent back
 ```
 
 For a known item, run `taskhub show WEB-12` once; search with `taskhub items list` only when the key is unknown. Continue long comment lists with `taskhub comments list WEB-12 --cursor CURSOR`.
