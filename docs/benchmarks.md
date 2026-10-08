@@ -78,4 +78,24 @@ TaskHub's activity for both items: created and commented by the Tester's token, 
 
 **Codex rerun with the corrected loop (E2E-115, 60 s):** `taskhub branch E2E-115 --create` was called with the key on the first try, and no `REF_REQUIRED` occurred. The run used 6 `taskhub` calls plus `next --help` and `submit --help`, made 8 commands and 2 file changes, and used 169,067 input tokens (146,176 cached) and 1,541 output tokens. It ended with one claim and one submission. The branch still couldn't be created because `.git` is read-only in Codex's `workspace-write` sandbox, which Codex reported under limitations.
 
-Still to run: both clients without the skill.
+### Without the skill
+
+The same task with no skill installed. The prompt adds only "The taskhub CLI is installed and logged in." (`agent-run.sh <client> --no-skill`).
+
+| | Claude Code (E2E-116) | Codex (E2E-117) |
+| --- | --- | --- |
+| Outcome | Claimed, implemented, tested, committed on a branch, submitted to Dev Done | Claimed, implemented, tested, submitted to Dev Done; no branch (read-only `.git`), reported |
+| Asked to move to Done | Declined, citing the rule it read in `taskhub guide` | Didn't attempt it |
+| How it learned the CLI | `taskhub --help` → `taskhub guide` → `next --help` | `taskhub --help` → `next --help` + `taskhub guide` → `branch --help`, `submit --help` |
+| Time / turns | 39 s / 11 turns | 121 s |
+| Tool calls | 10: 8 Bash, 2 Write | 7 commands, 2 file changes |
+| Tokens | 20 input, 339,005 cache read, 28,319 cache write, 3,126 output; $0.36 | 172,059 input (148,480 cached), 1,344 output |
+
+**With versus without the skill:**
+
+| | With skill | Without skill |
+| --- | --- | --- |
+| Claude Code | 33 s, $0.32, 9 tool calls, 0 help lookups | 39 s, $0.36, 10 tool calls, 3 lookups (`--help`, `guide`, `next --help`) |
+| Codex | 60–63 s, 2 help lookups | 121 s, 5 lookups (`--help`, `guide`, three subcommand `--help`) |
+
+Both clients found `taskhub guide` from the top-level help without being told, and then followed the same rules as with the skill: no Done move, real test output as evidence, one claim and one submission. The skill saves the discovery round. In these runs that meant 15% of the time and cost for Claude Code and half the time for Codex. Without the skill, `guide` is what keeps the CLI usable.
