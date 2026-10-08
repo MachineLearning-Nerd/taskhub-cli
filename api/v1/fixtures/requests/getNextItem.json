@@ -1,0 +1,8 @@
+{
+  "query": {
+    "project": [
+      "web"
+    ],
+    "type": "bug"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "data": {
+    "item": {
+      "key": "WEB-12",
+      "project": "WEB",
+      "number": 12,
+      "type": "bug",
+      "title": "Restore keyboard focus",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": {
+        "username": "dev.example",
+        "agent": true
+      },
+      "labels": [
+        "accessibility"
+      ],
+      "version": 7,
+      "updatedAt": "2026-10-07T09:15:02.120Z",
+      "description": "Return focus to the menu trigger after Escape.",
+      "createdBy": {
+        "username": "qa.example",
+        "agent": false
+      },
+      "createdAt": "2026-10-07T09:15:02.120Z",
+      "links": [
+        {
+          "id": "00000000-0000-4000-8000-000000000003",
+          "kind": "pr",
+          "url": "https://code.example/pull/42",
+          "author": {
+            "username": "dev.example",
+            "agent": true
+          },
+          "createdAt": "2026-10-07T09:15:02.120Z"
+        }
+      ],
+      "url": "https://taskhub.example/projects/WEB/items/12"
+    },
+    "project": {
+      "name": "Example website",
+      "description": "Made-up project for contract examples."
+    },
+    "allowedTransitions": [
+      "todo",
+      "dev_done"
+    ],
+    "comments": {
+      "data": [
+        {
+          "id": "00000000-0000-4000-8000-000000000005",
+          "author": {
+            "username": "dev.example",
+            "agent": true
+          },
+          "body": "Checked the keyboard flow. @qa.example please review. @unknown.example",
+          "createdAt": "2026-10-07T09:15:02.120Z",
+          "editedAt": null,
+          "attachments": [
+            {
+              "id": "00000000-0000-4000-8000-000000000004",
+              "filename": "evidence.md",
+              "contentType": "text/markdown; charset=utf-8",
+              "size": 43,
+              "uploader": {
+                "username": "dev.example",
+                "agent": true
+              },
+              "commentId": "00000000-0000-4000-8000-000000000005",
+              "createdAt": "2026-10-07T09:15:02.120Z"
+            }
+          ]
+        }
+      ],
+      "nextCursor": "ZXhhbXBsZS1jdXJzb3I"
+    },
+    "attachments": {
+      "data": [
+        {
+          "id": "00000000-0000-4000-8000-000000000004",
+          "filename": "evidence.md",
+          "contentType": "text/markdown; charset=utf-8",
+          "size": 43,
+          "uploader": {
+            "username": "dev.example",
+            "agent": true
+          },
+          "commentId": "00000000-0000-4000-8000-000000000005",
+          "createdAt": "2026-10-07T09:15:02.120Z"
+        }
+      ],
+      "nextCursor": null
+    },
+    "links": {
+      "data": [
+        {
+          "id": "00000000-0000-4000-8000-000000000003",
+          "kind": "pr",
+          "url": "https://code.example/pull/42",
+          "author": {
+            "username": "dev.example",
+            "agent": true
+          },
+          "createdAt": "2026-10-07T09:15:02.120Z"
+        }
+      ],
+      "nextCursor": null
+    }
+  },
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001"
+  }
+}

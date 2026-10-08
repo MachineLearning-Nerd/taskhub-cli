@@ -1,0 +1,17 @@
+{
+  "type": "https://taskhub.example/problems/unknown-user",
+  "title": "Unknown user",
+  "status": 422,
+  "code": "UNKNOWN_USER",
+  "details": {
+    "fields": {
+      "assignee": [
+        "Choose a project member."
+      ]
+    },
+    "allowed": [
+      "dev.example",
+      "qa.example"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "https://taskhub.example/problems/unauthenticated",
+  "title": "Unauthenticated",
+  "status": 401,
+  "code": "UNAUTHENTICATED",
+  "details": {
+    "reason": "revoked"
+  }
+}

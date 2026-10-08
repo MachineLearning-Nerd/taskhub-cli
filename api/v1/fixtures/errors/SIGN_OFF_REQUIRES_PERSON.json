@@ -1,0 +1,6 @@
+{
+  "type": "https://taskhub.example/problems/sign-off-requires-person",
+  "title": "Sign off requires person",
+  "status": 403,
+  "code": "SIGN_OFF_REQUIRES_PERSON"
+}

@@ -1,0 +1,9 @@
+{
+  "type": "https://taskhub.example/problems/already-claimed",
+  "title": "Already claimed",
+  "status": 409,
+  "code": "ALREADY_CLAIMED",
+  "details": {
+    "assignee": "other.example"
+  }
+}

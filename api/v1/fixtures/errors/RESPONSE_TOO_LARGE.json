@@ -1,0 +1,13 @@
+{
+  "type": "https://taskhub.example/problems/response-too-large",
+  "title": "Response too large",
+  "status": 422,
+  "code": "RESPONSE_TOO_LARGE",
+  "details": {
+    "fields": {
+      "response": [
+        "Request a smaller page."
+      ]
+    }
+  }
+}

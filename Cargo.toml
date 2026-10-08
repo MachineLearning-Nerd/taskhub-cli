@@ -1,0 +1,36 @@
+[package]
+name = "taskhub-cli"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Command-line client and MCP server for TaskHub"
+license = "MIT"
+repository = "https://github.com/MachineLearning-Nerd/taskhub-cli"
+publish = false
+
+[[bin]]
+name = "taskhub"
+path = "src/main.rs"
+
+[lib]
+name = "taskhub_cli"
+path = "src/lib.rs"
+
+[dependencies]
+clap = { version = "4.6.7", features = ["derive", "env", "wrap_help"] }
+clap_complete = "4.6.11"
+clap_mangen = "0.3.3"
+reqwest = { version = "0.13.5", default-features = false, features = ["blocking", "rustls", "json", "multipart"] }
+rpassword = "7.5.4"
+rustix = { version = "1.1.5", features = ["fs", "process"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.151", features = ["preserve_order"] }
+sha2 = "0.11.0"
+time = { version = "0.3.55", features = ["formatting", "parsing", "macros", "serde"] }
+toml = "1.1.7"
+uuid = { version = "1.27.0", features = ["v4", "serde"] }
+
+[dev-dependencies]
+assert_cmd = "2.2.2"
+tempfile = "3.27.0"
+tiny_http = "0.12.0"

@@ -1,0 +1,20 @@
+{
+  "query": {
+    "project": [
+      "web",
+      "ops"
+    ],
+    "status": [
+      "todo",
+      "in_progress"
+    ],
+    "label": [
+      "accessibility"
+    ],
+    "type": "bug",
+    "assignee": "me",
+    "agent": "true",
+    "sort": "priority",
+    "limit": "20"
+  }
+}

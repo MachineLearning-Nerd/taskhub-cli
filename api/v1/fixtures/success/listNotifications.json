@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": "00000000-0000-4000-8000-000000000006",
+      "kind": "review",
+      "item": {
+        "key": "WEB-12",
+        "title": "Restore keyboard focus",
+        "status": "dev_done",
+        "assignee": {
+          "username": "dev.example",
+          "agent": true
+        }
+      },
+      "actor": {
+        "username": "dev.example",
+        "agent": true
+      },
+      "createdAt": "2026-10-07T09:15:02.120Z",
+      "read": false
+    }
+  ],
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001",
+    "page": {
+      "nextCursor": null
+    }
+  }
+}

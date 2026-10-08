@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "id": "00000000-0000-4000-8000-000000000004",
+      "filename": "evidence.md",
+      "contentType": "text/markdown; charset=utf-8",
+      "size": 43,
+      "uploader": {
+        "username": "dev.example",
+        "agent": true
+      },
+      "commentId": "00000000-0000-4000-8000-000000000005",
+      "createdAt": "2026-10-07T09:15:02.120Z"
+    }
+  ],
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001",
+    "page": {
+      "nextCursor": null
+    }
+  }
+}

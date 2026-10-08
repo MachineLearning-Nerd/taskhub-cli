@@ -1,0 +1,16 @@
+{
+  "type": "https://taskhub.example/problems/unknown-label",
+  "title": "Unknown label",
+  "status": 422,
+  "code": "UNKNOWN_LABEL",
+  "details": {
+    "fields": {
+      "labels": [
+        "Choose a label in this project."
+      ]
+    },
+    "allowed": [
+      "accessibility"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "data": {
+    "owner": {
+      "username": "dev.example",
+      "agent": true
+    },
+    "role": "developer",
+    "profile": "write",
+    "projects": [
+      "WEB"
+    ],
+    "expiresAt": null,
+    "apiVersion": 1,
+    "minClientVersion": "0.1.0",
+    "latestClientVersion": "0.2.0"
+  },
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001"
+  }
+}

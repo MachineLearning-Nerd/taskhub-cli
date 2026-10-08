@@ -1,0 +1,9 @@
+{
+  "type": "https://taskhub.example/problems/client-upgrade-required",
+  "title": "Client upgrade required",
+  "status": 400,
+  "code": "CLIENT_UPGRADE_REQUIRED",
+  "details": {
+    "minClientVersion": "0.2.0"
+  }
+}

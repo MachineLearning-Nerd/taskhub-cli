@@ -1,0 +1,14 @@
+{
+  "params": {
+    "ref": "web-12"
+  },
+  "body": {
+    "reason": "Focus still needs to return to the trigger. @qa.example @unknown.example",
+    "attachmentIds": [
+      "00000000-0000-4000-8000-000000000004"
+    ]
+  },
+  "headers": {
+    "Idempotency-Key": "00000000-0000-4000-8000-000000000118"
+  }
+}

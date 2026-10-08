@@ -1,0 +1,64 @@
+{
+  "data": {
+    "key": "WEB",
+    "name": "Example website",
+    "description": "Made-up project for contract examples.",
+    "archived": false,
+    "itemCounts": {
+      "todo": 2,
+      "in_progress": 1,
+      "dev_done": 1,
+      "done": 1
+    },
+    "labels": [
+      {
+        "name": "accessibility",
+        "color": "blue"
+      }
+    ],
+    "members": [
+      {
+        "username": "dev.example",
+        "role": "developer"
+      },
+      {
+        "username": "qa.example",
+        "role": "tester"
+      }
+    ],
+    "enums": {
+      "types": [
+        "task",
+        "bug"
+      ],
+      "statuses": [
+        "todo",
+        "in_progress",
+        "dev_done",
+        "done"
+      ],
+      "priorities": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "limits": {
+      "title": 200,
+      "description": 20000,
+      "comment": 5000,
+      "linkUrl": 500,
+      "attachmentBytes": 4194304,
+      "jsonBodyBytes": 65536,
+      "multipartBodyBytes": 4718592,
+      "responseBytes": 2097152,
+      "receiptBytes": 4096,
+      "defaultPageSize": 20,
+      "maxPageSize": 100
+    }
+  },
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001"
+  }
+}

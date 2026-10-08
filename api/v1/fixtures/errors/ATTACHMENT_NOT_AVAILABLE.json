@@ -1,0 +1,13 @@
+{
+  "type": "https://taskhub.example/problems/attachment-not-available",
+  "title": "Attachment not available",
+  "status": 422,
+  "code": "ATTACHMENT_NOT_AVAILABLE",
+  "details": {
+    "fields": {
+      "attachmentIds": [
+        "Choose an unattached file uploaded by this owner to this item."
+      ]
+    }
+  }
+}

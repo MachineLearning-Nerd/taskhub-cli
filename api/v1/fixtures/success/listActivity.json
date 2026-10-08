@@ -1,0 +1,51 @@
+{
+  "data": [
+    {
+      "at": "2026-10-07T09:15:02.120Z",
+      "actor": {
+        "username": "dev.example",
+        "agent": true
+      },
+      "event": "claimed",
+      "fields": [
+        "assignee",
+        "status"
+      ],
+      "from": "todo",
+      "to": "in_progress"
+    },
+    {
+      "at": "2026-10-07T09:15:02.120Z",
+      "actor": {
+        "username": "dev.example",
+        "agent": true
+      },
+      "event": "deleted",
+      "fields": [
+        "deletedAt"
+      ],
+      "from": null,
+      "to": null
+    },
+    {
+      "at": "2026-10-07T09:15:02.120Z",
+      "actor": {
+        "username": "dev.example",
+        "agent": true
+      },
+      "event": "restored",
+      "fields": [
+        "deletedAt"
+      ],
+      "from": null,
+      "to": null
+    }
+  ],
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001",
+    "page": {
+      "nextCursor": null
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "params": {
+    "ref": "web-12"
+  },
+  "body": {
+    "file": {
+      "filename": "evidence.md",
+      "contentType": "text/markdown",
+      "contents": "# Example evidence\n\nKeyboard check passed.\n"
+    }
+  },
+  "headers": {
+    "Idempotency-Key": "00000000-0000-4000-8000-000000000121"
+  }
+}

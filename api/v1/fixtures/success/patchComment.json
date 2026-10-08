@@ -1,0 +1,22 @@
+{
+  "data": {
+    "key": "WEB-12",
+    "version": 8,
+    "status": "in_progress",
+    "commentId": "00000000-0000-4000-8000-000000000005",
+    "mentioned": [
+      "qa.example"
+    ],
+    "unmatchedMentions": [
+      "unknown.example"
+    ]
+  },
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001",
+    "operation": {
+      "id": "00000000-0000-4000-8000-000000000120",
+      "replayed": false
+    }
+  }
+}

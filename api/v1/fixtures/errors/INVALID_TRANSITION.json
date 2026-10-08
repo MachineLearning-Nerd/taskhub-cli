@@ -1,0 +1,17 @@
+{
+  "type": "https://taskhub.example/problems/invalid-transition",
+  "title": "Invalid transition",
+  "status": 422,
+  "code": "INVALID_TRANSITION",
+  "details": {
+    "fields": {
+      "to": [
+        "Choose an allowed transition."
+      ]
+    },
+    "allowed": [
+      "todo",
+      "dev_done"
+    ]
+  }
+}

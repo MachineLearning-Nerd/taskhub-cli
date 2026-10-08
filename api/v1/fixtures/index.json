@@ -1,0 +1,320 @@
+{
+  "success": [
+    {
+      "endpoint": "getMe",
+      "file": "success/getMe.json"
+    },
+    {
+      "endpoint": "listProjects",
+      "file": "success/listProjects.json"
+    },
+    {
+      "endpoint": "getProject",
+      "file": "success/getProject.json"
+    },
+    {
+      "endpoint": "listItems",
+      "file": "success/listItems.json"
+    },
+    {
+      "endpoint": "getNextItem",
+      "file": "success/getNextItem.json"
+    },
+    {
+      "endpoint": "getItem",
+      "file": "success/getItem.json"
+    },
+    {
+      "endpoint": "getContext",
+      "file": "success/getContext.json"
+    },
+    {
+      "endpoint": "listActivity",
+      "file": "success/listActivity.json"
+    },
+    {
+      "endpoint": "listComments",
+      "file": "success/listComments.json"
+    },
+    {
+      "endpoint": "listAttachments",
+      "file": "success/listAttachments.json"
+    },
+    {
+      "endpoint": "listNotifications",
+      "file": "success/listNotifications.json"
+    },
+    {
+      "endpoint": "createItem",
+      "file": "success/createItem.json"
+    },
+    {
+      "endpoint": "patchItem",
+      "file": "success/patchItem.json"
+    },
+    {
+      "endpoint": "transitionItem",
+      "file": "success/transitionItem.json"
+    },
+    {
+      "endpoint": "claimItem",
+      "file": "success/claimItem.json"
+    },
+    {
+      "endpoint": "submitItem",
+      "file": "success/submitItem.json"
+    },
+    {
+      "endpoint": "rejectItem",
+      "file": "success/rejectItem.json"
+    },
+    {
+      "endpoint": "addComment",
+      "file": "success/addComment.json"
+    },
+    {
+      "endpoint": "patchComment",
+      "file": "success/patchComment.json"
+    },
+    {
+      "endpoint": "uploadAttachment",
+      "file": "success/uploadAttachment.json"
+    },
+    {
+      "endpoint": "addLink",
+      "file": "success/addLink.json"
+    },
+    {
+      "endpoint": "markNotificationsRead",
+      "file": "success/markNotificationsRead.json"
+    },
+    {
+      "endpoint": "getNextItem",
+      "file": "success/getNextItem-empty.json"
+    },
+    {
+      "endpoint": "markNotificationsRead",
+      "file": "success/markNotificationsRead-replay.json"
+    },
+    {
+      "endpoint": "getOpenApi",
+      "file": "success/getOpenApi.json"
+    },
+    {
+      "endpoint": "downloadAttachment",
+      "file": "success/downloadAttachment.md"
+    },
+    {
+      "endpoint": "getMe",
+      "file": "success/getMeUnconfigured.json"
+    }
+  ],
+  "errors": [
+    {
+      "code": "BAD_REQUEST",
+      "file": "errors/BAD_REQUEST.json"
+    },
+    {
+      "code": "IDEMPOTENCY_KEY_REQUIRED",
+      "file": "errors/IDEMPOTENCY_KEY_REQUIRED.json"
+    },
+    {
+      "code": "INVALID_CURSOR",
+      "file": "errors/INVALID_CURSOR.json"
+    },
+    {
+      "code": "CLIENT_UPGRADE_REQUIRED",
+      "file": "errors/CLIENT_UPGRADE_REQUIRED.json"
+    },
+    {
+      "code": "UNAUTHENTICATED",
+      "file": "errors/UNAUTHENTICATED.json"
+    },
+    {
+      "code": "READ_ONLY_TOKEN",
+      "file": "errors/READ_ONLY_TOKEN.json"
+    },
+    {
+      "code": "SIGN_OFF_REQUIRES_PERSON",
+      "file": "errors/SIGN_OFF_REQUIRES_PERSON.json"
+    },
+    {
+      "code": "NOT_AGENT_COMMENT",
+      "file": "errors/NOT_AGENT_COMMENT.json"
+    },
+    {
+      "code": "NOT_FOUND",
+      "file": "errors/NOT_FOUND.json"
+    },
+    {
+      "code": "VERSION_CONFLICT",
+      "file": "errors/VERSION_CONFLICT.json"
+    },
+    {
+      "code": "STATUS_CONFLICT",
+      "file": "errors/STATUS_CONFLICT.json"
+    },
+    {
+      "code": "ALREADY_CLAIMED",
+      "file": "errors/ALREADY_CLAIMED.json"
+    },
+    {
+      "code": "PROJECT_ARCHIVED",
+      "file": "errors/PROJECT_ARCHIVED.json"
+    },
+    {
+      "code": "IDEMPOTENCY_CONFLICT",
+      "file": "errors/IDEMPOTENCY_CONFLICT.json"
+    },
+    {
+      "code": "IDEMPOTENCY_IN_PROGRESS",
+      "file": "errors/IDEMPOTENCY_IN_PROGRESS.json"
+    },
+    {
+      "code": "PAYLOAD_TOO_LARGE",
+      "file": "errors/PAYLOAD_TOO_LARGE.json"
+    },
+    {
+      "code": "UNSUPPORTED_FILE_TYPE",
+      "file": "errors/UNSUPPORTED_FILE_TYPE.json"
+    },
+    {
+      "code": "VALIDATION_FAILED",
+      "file": "errors/VALIDATION_FAILED.json"
+    },
+    {
+      "code": "UNKNOWN_USER",
+      "file": "errors/UNKNOWN_USER.json"
+    },
+    {
+      "code": "UNKNOWN_LABEL",
+      "file": "errors/UNKNOWN_LABEL.json"
+    },
+    {
+      "code": "INVALID_TRANSITION",
+      "file": "errors/INVALID_TRANSITION.json"
+    },
+    {
+      "code": "ATTACHMENT_NOT_AVAILABLE",
+      "file": "errors/ATTACHMENT_NOT_AVAILABLE.json"
+    },
+    {
+      "code": "RESPONSE_TOO_LARGE",
+      "file": "errors/RESPONSE_TOO_LARGE.json"
+    },
+    {
+      "code": "RATE_LIMITED",
+      "file": "errors/RATE_LIMITED.json"
+    },
+    {
+      "code": "TEMPORARILY_UNAVAILABLE",
+      "file": "errors/TEMPORARILY_UNAVAILABLE.json"
+    },
+    {
+      "code": "DELETE_REQUIRES_PERSON",
+      "file": "errors/DELETE_REQUIRES_PERSON.json"
+    }
+  ],
+  "requests": [
+    {
+      "endpoint": "getMe",
+      "file": "requests/getMe.json"
+    },
+    {
+      "endpoint": "listProjects",
+      "file": "requests/listProjects.json"
+    },
+    {
+      "endpoint": "getProject",
+      "file": "requests/getProject.json"
+    },
+    {
+      "endpoint": "listItems",
+      "file": "requests/listItems.json"
+    },
+    {
+      "endpoint": "getNextItem",
+      "file": "requests/getNextItem.json"
+    },
+    {
+      "endpoint": "getItem",
+      "file": "requests/getItem.json"
+    },
+    {
+      "endpoint": "getContext",
+      "file": "requests/getContext.json"
+    },
+    {
+      "endpoint": "listActivity",
+      "file": "requests/listActivity.json"
+    },
+    {
+      "endpoint": "listComments",
+      "file": "requests/listComments.json"
+    },
+    {
+      "endpoint": "listAttachments",
+      "file": "requests/listAttachments.json"
+    },
+    {
+      "endpoint": "downloadAttachment",
+      "file": "requests/downloadAttachment.json"
+    },
+    {
+      "endpoint": "listNotifications",
+      "file": "requests/listNotifications.json"
+    },
+    {
+      "endpoint": "getOpenApi",
+      "file": "requests/getOpenApi.json"
+    },
+    {
+      "endpoint": "createItem",
+      "file": "requests/createItem.json"
+    },
+    {
+      "endpoint": "patchItem",
+      "file": "requests/patchItem.json"
+    },
+    {
+      "endpoint": "transitionItem",
+      "file": "requests/transitionItem.json"
+    },
+    {
+      "endpoint": "claimItem",
+      "file": "requests/claimItem.json"
+    },
+    {
+      "endpoint": "submitItem",
+      "file": "requests/submitItem.json"
+    },
+    {
+      "endpoint": "rejectItem",
+      "file": "requests/rejectItem.json"
+    },
+    {
+      "endpoint": "addComment",
+      "file": "requests/addComment.json"
+    },
+    {
+      "endpoint": "patchComment",
+      "file": "requests/patchComment.json"
+    },
+    {
+      "endpoint": "uploadAttachment",
+      "file": "requests/uploadAttachment.json"
+    },
+    {
+      "endpoint": "addLink",
+      "file": "requests/addLink.json"
+    },
+    {
+      "endpoint": "markNotificationsRead",
+      "file": "requests/markNotificationsRead.json"
+    },
+    {
+      "endpoint": "deleteItem",
+      "file": "requests/deleteItem.json"
+    }
+  ]
+}

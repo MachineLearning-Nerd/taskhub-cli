@@ -1,0 +1,6 @@
+{
+  "type": "https://taskhub.example/problems/read-only-token",
+  "title": "Read only token",
+  "status": 403,
+  "code": "READ_ONLY_TOKEN"
+}

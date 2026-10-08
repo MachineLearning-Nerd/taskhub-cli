@@ -1,0 +1,9 @@
+{
+  "type": "https://taskhub.example/problems/version-conflict",
+  "title": "Version conflict",
+  "status": 409,
+  "code": "VERSION_CONFLICT",
+  "details": {
+    "currentVersion": 8
+  }
+}

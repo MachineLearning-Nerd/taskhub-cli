@@ -1,0 +1,6 @@
+{
+  "type": "https://taskhub.example/problems/not-found",
+  "title": "Not found",
+  "status": 404,
+  "code": "NOT_FOUND"
+}

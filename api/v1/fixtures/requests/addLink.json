@@ -1,0 +1,12 @@
+{
+  "params": {
+    "ref": "web-12"
+  },
+  "body": {
+    "kind": "pr",
+    "url": "https://code.example/pull/42"
+  },
+  "headers": {
+    "Idempotency-Key": "00000000-0000-4000-8000-000000000122"
+  }
+}

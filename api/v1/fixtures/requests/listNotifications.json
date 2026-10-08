@@ -1,0 +1,10 @@
+{
+  "query": {
+    "unread": "true",
+    "kind": [
+      "review",
+      "mention"
+    ],
+    "limit": "20"
+  }
+}

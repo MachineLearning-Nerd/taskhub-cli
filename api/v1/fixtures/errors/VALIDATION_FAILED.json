@@ -1,0 +1,13 @@
+{
+  "type": "https://taskhub.example/problems/validation-failed",
+  "title": "Validation failed",
+  "status": 422,
+  "code": "VALIDATION_FAILED",
+  "details": {
+    "fields": {
+      "title": [
+        "Title is required (max 200 characters)."
+      ]
+    }
+  }
+}

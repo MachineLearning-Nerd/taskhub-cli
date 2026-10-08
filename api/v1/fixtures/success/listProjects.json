@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "key": "WEB",
+      "name": "Example website",
+      "description": "Made-up project for contract examples.",
+      "archived": false,
+      "itemCounts": {
+        "todo": 2,
+        "in_progress": 1,
+        "dev_done": 1,
+        "done": 1
+      }
+    }
+  ],
+  "meta": {
+    "apiVersion": 1,
+    "requestId": "00000000-0000-4000-8000-000000000001",
+    "page": {
+      "nextCursor": null
+    }
+  }
+}

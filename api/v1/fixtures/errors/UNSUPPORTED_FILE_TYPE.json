@@ -1,0 +1,17 @@
+{
+  "type": "https://taskhub.example/problems/unsupported-file-type",
+  "title": "Unsupported file type",
+  "status": 415,
+  "code": "UNSUPPORTED_FILE_TYPE",
+  "details": {
+    "allowed": [
+      "image/png",
+      "image/jpeg",
+      "image/gif",
+      "image/webp",
+      "application/pdf",
+      "text/markdown; charset=utf-8",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ]
+  }
+}

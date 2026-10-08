@@ -1,0 +1,6 @@
+{
+  "type": "https://taskhub.example/problems/invalid-cursor",
+  "title": "Invalid cursor",
+  "status": 400,
+  "code": "INVALID_CURSOR"
+}

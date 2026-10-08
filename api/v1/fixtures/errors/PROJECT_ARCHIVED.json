@@ -1,0 +1,6 @@
+{
+  "type": "https://taskhub.example/problems/project-archived",
+  "title": "Project archived",
+  "status": 409,
+  "code": "PROJECT_ARCHIVED"
+}

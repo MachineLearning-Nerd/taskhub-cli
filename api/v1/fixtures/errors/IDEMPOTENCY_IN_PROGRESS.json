@@ -1,0 +1,6 @@
+{
+  "type": "https://taskhub.example/problems/idempotency-in-progress",
+  "title": "Idempotency in progress",
+  "status": 409,
+  "code": "IDEMPOTENCY_IN_PROGRESS"
+}

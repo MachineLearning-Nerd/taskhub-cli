@@ -1,0 +1,9 @@
+{
+  "type": "https://taskhub.example/problems/payload-too-large",
+  "title": "Payload too large",
+  "status": 413,
+  "code": "PAYLOAD_TOO_LARGE",
+  "details": {
+    "limit": 65536
+  }
+}

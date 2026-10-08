@@ -1,0 +1,16 @@
+{
+  "params": {
+    "key": "web"
+  },
+  "body": {
+    "type": "task",
+    "title": "Example task",
+    "assignee": "dev.example",
+    "labels": [
+      "accessibility"
+    ]
+  },
+  "headers": {
+    "Idempotency-Key": "00000000-0000-4000-8000-000000000113"
+  }
+}

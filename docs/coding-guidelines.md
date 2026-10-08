@@ -17,10 +17,11 @@ How to write taskhub-cli so it stays easy to change and hard to get wrong. [PLAN
 
 ## Errors and exit codes
 
-- One `CliError` enum with `thiserror`. Every variant carries:
-  - its stable `code` (the API's codes plus the CLI's own: `REF_REQUIRED`, `PR_NOT_FOUND`, `OPERATION_OWNER_MISMATCH`, `UPLOAD_CHANGED`, `REPLAY_WINDOW_EXPIRED`, `OUTCOME_UNKNOWN`, `PROTOCOL_ERROR`, …)
-  - its exit code
-  - its hint
+- One error type, `CliError` (in `error.rs`), boxed so results stay small. It carries:
+  - a stable `Code`: the API's codes plus the CLI's own (`REF_REQUIRED`, `PR_NOT_FOUND`, `OPERATION_OWNER_MISMATCH`, `UPLOAD_CHANGED`, `REPLAY_WINDOW_EXPIRED`, `OUTCOME_UNKNOWN`, `PROTOCOL_ERROR`, …)
+  - the message, HTTP status, details and hint
+  - the operation, for writes
+- Each code and its exit code are declared once, in the `codes!` table.
 - The exit-code mapping is a single `match` in one place, tested against the plan's table.
 - No `unwrap`, `expect` or `panic!` outside tests. In `main` alone, a panic hook turns a bug into exit 1 with a JSON error when stdout is not a terminal.
 - `anyhow` is not used. Errors stay typed all the way to the envelope.

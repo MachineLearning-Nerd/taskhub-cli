@@ -1,0 +1,23 @@
+{
+  "params": {
+    "ref": "web-12"
+  },
+  "body": {
+    "from": "in_progress",
+    "summary": "Restored keyboard focus. @qa.example @unknown.example",
+    "testing": "Checked Escape and arrow keys.",
+    "limitations": "No pointer changes.",
+    "links": [
+      {
+        "kind": "pr",
+        "url": "https://code.example/pull/42"
+      }
+    ],
+    "attachmentIds": [
+      "00000000-0000-4000-8000-000000000004"
+    ]
+  },
+  "headers": {
+    "Idempotency-Key": "00000000-0000-4000-8000-000000000117"
+  }
+}
