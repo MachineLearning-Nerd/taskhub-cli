@@ -243,7 +243,6 @@ pub fn project(detail: &ProjectDetail) -> String {
     out
 }
 
-#[allow(dead_code)] // Used by the write commands (C2).
 pub fn receipt(action: &str, receipt: &Receipt) -> String {
     let mut out = format!(
         "{action} {} (now {}, version {}).",

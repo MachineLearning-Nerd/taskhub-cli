@@ -10,6 +10,7 @@ pub mod credentials;
 pub mod digest;
 pub mod error;
 pub mod git;
+pub mod journal;
 pub mod output;
 pub mod refs;
 pub mod token;

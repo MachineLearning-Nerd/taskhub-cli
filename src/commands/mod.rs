@@ -4,9 +4,15 @@ mod auth;
 mod notices;
 mod read;
 pub(crate) mod render;
+mod write;
+
+pub use auth::fetch_me;
 
 use crate::api::{self, Client, HintContext};
-use crate::cli::{AttachmentsCommand, Cli, Command, CommentsCommand, ItemsCommand, ProjectsCommand};
+use crate::cli::{
+    AttachmentsCommand, Cli, Command, CommentsCommand, InboxAction, ItemsCommand, PendingAction,
+    ProjectsCommand,
+};
 use crate::credentials::{self, Credential};
 use crate::error::{CliError, Result};
 use crate::output::{Mode, Success};
@@ -55,7 +61,28 @@ fn dispatch(command: Command) -> Result<Success> {
         Command::Auth(command) => auth::run(command),
         Command::Show(args) => read::show(args),
         Command::Mine(args) => read::mine(args),
-        Command::Inbox(args) if args.action.is_none() => read::inbox(args),
+        Command::Next(args) => write::next(args),
+        Command::Claim(args) => write::claim(args),
+        Command::Comment(args) => write::comment(args),
+        Command::Submit(args) => write::submit(args),
+        Command::Reject(args) => write::reject(args),
+        Command::Link(args) => write::link(args),
+        Command::Branch(args) => write::branch(args),
+        Command::Open(args) => write::open(args),
+        Command::Inbox(args) => match args.action {
+            Some(InboxAction::Done(done)) => write::inbox_done(done),
+            None => read::inbox(args),
+        },
+        Command::Items(ItemsCommand::Create(args)) => write::items_create(args),
+        Command::Items(ItemsCommand::Update(args)) => write::items_update(args),
+        Command::Items(ItemsCommand::Move(args)) => write::items_move(args),
+        Command::Comments(CommentsCommand::Edit(args)) => write::comments_edit(args),
+        Command::Attachments(AttachmentsCommand::Add(args)) => write::attachments_add(args),
+        Command::Pending(args) => match args.action {
+            Some(PendingAction::Discard(op)) => write::pending_discard(op),
+            None => write::pending(),
+        },
+        Command::Retry(args) => write::retry(args),
         Command::Items(ItemsCommand::List(args)) => read::items_list(args),
         Command::Items(ItemsCommand::Get(args)) => read::items_get(args),
         Command::Items(ItemsCommand::Activity(args)) => read::activity(args),
