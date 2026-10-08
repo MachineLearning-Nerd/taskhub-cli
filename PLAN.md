@@ -2,7 +2,7 @@
 
 Build a separate Rust command line client, `taskhub`, that lets coding agents and people do real work in TaskHub: find and claim work, read full context, comment, attach evidence, link PRs, submit to Dev Done, follow the inbox, and send work back. Keep TaskHub's web application, database, authentication and workflow rules in the existing TaskHub project.
 
-Date: 2026-10-07. Status: revised after the second three-agent review (security, API contract, product). Scope is the complete product, not an MVP. The shared skill bundle staged earlier is kept and updated to this command set. Implementation has not started. See [REVIEW.md](REVIEW.md) for both review rounds.
+Date: 2026-10-07. Status: revised after the second three-agent review (security, API contract, product). Scope is the complete product, not an MVP. The shared skill bundle staged earlier is kept and updated to this command set. Implementation has not started. The review record is kept with the TaskHub server, whose security design it covers.
 
 ## Product rules
 
@@ -314,7 +314,7 @@ It refuses to overwrite a different skill named `taskhub`. It does update a bund
 
 ```text
 taskhub-cli/
-  PLAN.md  REVIEW.md  Cargo.toml  Cargo.lock
+  PLAN.md  Cargo.toml  Cargo.lock
   src/
     main.rs          # process boundary, exit codes
     cli.rs           # clap definitions
