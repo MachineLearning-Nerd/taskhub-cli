@@ -55,7 +55,10 @@ fn login(args: LoginArgs) -> Result<Success> {
     let client = Client::new(&candidate, super::default_deadline())?;
     let me = fetch_me(&client)?;
     let path = credentials::save(&origin, &token, &me.owner.username)?;
-    if std::env::var_os("TASKHUB_TOKEN").is_some() || std::env::var_os("TASKHUB_TOKEN_FILE").is_some() {
+    if ["TASKHUB_TOKEN", "TASKHUB_TOKEN_FILE"]
+        .iter()
+        .any(|v| std::env::var_os(v).is_some_and(|v| !v.is_empty()))
+    {
         note("Note: TASKHUB_TOKEN or TASKHUB_TOKEN_FILE is set and takes precedence over this login.");
     }
     let human = format!(
