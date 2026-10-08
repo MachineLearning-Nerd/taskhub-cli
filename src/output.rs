@@ -159,7 +159,7 @@ pub fn table(headers: &[&str], rows: &[Vec<String>]) -> String {
                 out.push_str(&" ".repeat(pad + 2));
             }
         }
-        out
+        out.trim_end().to_owned()
     };
     let mut out = line(&headers.iter().map(|h| h.to_string()).collect::<Vec<_>>());
     for row in rows {

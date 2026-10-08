@@ -20,7 +20,7 @@ fn main() -> ExitCode {
         Err(error) => return usage_error(early_mode, error),
     };
     let mode = Mode::choose(cli.json, cli.human);
-    match taskhub_cli::commands::run(cli) {
+    match taskhub_cli::commands::run(cli, mode) {
         Ok(success) if success.meta.contains_key("raw") => {
             print!("{}", success.human);
             ExitCode::SUCCESS
