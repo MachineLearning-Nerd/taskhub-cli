@@ -3,7 +3,6 @@
 class Taskhub < Formula
   desc "Command-line client and MCP server for TaskHub"
   homepage "@REPOSITORY@"
-  version "@VERSION@"
   license "MIT"
 
   on_macos do
