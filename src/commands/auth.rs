@@ -22,7 +22,9 @@ pub fn run(command: AuthCommand) -> Result<Success> {
 
 fn read_token(with_token: bool) -> Result<Secret> {
     let stdin = std::io::stdin();
-    let text = if with_token {
+    // `--with-token` typed at a terminal, with nothing piped in, would wait silently for EOF; prompt instead.
+    let interactive = stdin.is_terminal() && std::io::stderr().is_terminal();
+    let text = if with_token && !interactive {
         let mut text = String::new();
         stdin
             .lock()
@@ -30,7 +32,7 @@ fn read_token(with_token: bool) -> Result<Secret> {
             .read_to_string(&mut text)
             .map_err(|e| CliError::input(format!("Could not read the token from stdin: {e}")))?;
         text
-    } else if stdin.is_terminal() && std::io::stderr().is_terminal() {
+    } else if interactive {
         rpassword::prompt_password("TaskHub API token: ")
             .map_err(|e| CliError::input(format!("Could not read the token: {e}")))?
     } else {
